@@ -11,6 +11,7 @@ import "hardhat-deploy";
 import "hardhat-deploy-ethers";
 import { task } from "hardhat/config";
 import generateTsAbis from "./scripts/generateTsAbis";
+import path from "path";
 
 // If not set, it uses the hardhat account 0 private key.
 // You can generate a random account with `yarn generate` or `yarn account:import` to import your existing PK
@@ -28,14 +29,14 @@ const config: HardhatUserConfig = {
     compilers: [
       {
         version: "0.8.20",
+        compilerPath: path.resolve(__dirname, "node_modules/solc/soljson.js"),
         settings: {
           optimizer: {
             enabled: true,
-            // https://docs.soliditylang.org/en/latest/using-the-compiler.html#optimizer-options
             runs: 200,
           },
         },
-      },
+      } as any,
     ],
   },
   defaultNetwork: "localhost",

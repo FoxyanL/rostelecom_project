@@ -1,88 +1,235 @@
-# 🏗 Scaffold-ETH 2
+# Децентрализованная система голосования на базе Ethereum
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+## Описание проекта
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+Децентрализованное приложение (DApp) для проведения прозрачных и безопасных голосований с использованием смарт-контрактов в сети Ethereum.
 
-⚙️ Built using NextJS, RainbowKit, Foundry/Hardhat, Wagmi, Viem, and Typescript.
+### Основные возможности
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+- Прозрачное голосование с записью всех данных в блокчейн
+- Безопасность — невозможность изменения результатов после голосования
+- Защита от повторного голосования (один адрес = один голос)
+- Отображение результатов в реальном времени
+- Полностью децентрализованная архитектура
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+## Назначение системы
 
-## Requirements
+Система предназначена для проведения голосований в:
+- Учебных и демонстрационных проектах
+- Студенческих опросах
+- Децентрализованных сообществах
+- Примерах использования Web3-технологий
 
-Before you begin, you need to install the following tools:
+## Архитектура
 
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
+Проект построен на основе Scaffold-ETH 2 и включает:
+
+### Технологический стек
+
+- **Solidity** — разработка смарт-контрактов
+- **Hardhat** — среда разработки и тестирования
+- **Next.js** — фронтенд-фреймворк
+- **TypeScript** — типизация
+- **Wagmi / Viem** — взаимодействие с блокчейном
+- **RainbowKit** — подключение кошельков
+- **Tailwind CSS** — стилизация интерфейса
+
+### Структура проекта
+
+```
+packages/
+  hardhat/          # Смарт-контракты и тесты
+    contracts/
+      Voting.sol    # Основной контракт голосования
+    test/
+      Voting.test.ts # Модульные тесты
+    deploy/         # Скрипты развёртывания
+  
+  nextjs/           # Фронтенд-приложение
+    app/
+      page.tsx      # Главная страница с интерфейсом голосования
+```
+
+
+## Требования
+
+Перед началом работы установите:
+
+- [Node.js](https://nodejs.org/) >= v18.17
+- [Yarn](https://classic.yarnpkg.com/en/docs/install/) (v1 или v2+)
 - [Git](https://git-scm.com/downloads)
 
-## Quickstart
+## Быстрый старт
 
-To get started with Scaffold-ETH 2, follow the steps below:
+### 1. Клонирование репозитория
 
-1. Install the latest version of Scaffold-ETH 2
-
+```bash
+git clone <repository-url>
+cd rostelecom_project
 ```
-npx create-eth@latest
+
+### 2. Установка зависимостей
+
+```bash
+yarn install
 ```
 
-This command will install all the necessary packages and dependencies, so it might take a while.
+### 3. Запуск локальной блокчейн-сети
 
-> [!NOTE]
-> You can also initialize your project with one of our extensions to add specific features or starter-kits. Learn more in our [extensions documentation](https://docs.scaffoldeth.io/extensions/).
+Откройте первый терминал и выполните:
 
-2. Run a local network in the first terminal:
-
-```
+```bash
 yarn chain
 ```
 
-This command starts a local Ethereum network that runs on your local machine and can be used for testing and development. Learn how to [customize your network configuration](https://docs.scaffoldeth.io/quick-start/environment#1-initialize-a-local-blockchain).
+Эта команда запустит локальную Ethereum-сеть с помощью Hardhat.
 
-3. On a second terminal, deploy the test contract:
+### 4. Развёртывание смарт-контракта
 
-```
+Откройте второй терминал и выполните:
+
+```bash
 yarn deploy
 ```
 
-This command deploys a test smart contract to the local network. You can find more information about how to customize your contract and deployment script in our [documentation](https://docs.scaffoldeth.io/quick-start/environment#2-deploy-your-smart-contract).
+Смарт-контракт будет развёрнут в локальной сети с тремя вариантами голосования по умолчанию.
 
-4. On a third terminal, start your NextJS app:
+### 5. Запуск фронтенд-приложения
 
-```
+Откройте третий терминал и выполните:
+
+```bash
 yarn start
 ```
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+Откройте браузер и перейдите по адресу: **http://localhost:3000**
 
-**What's next**:
+### 6. Подключение MetaMask
 
-Visit the [What's next section of our docs](https://docs.scaffoldeth.io/quick-start/environment#whats-next) to learn how to:
+1. Установите расширение [MetaMask](https://metamask.io/)
+2. Подключитесь к локальной сети (Hardhat обычно на порту 8545)
+3. Импортируйте тестовый аккаунт из Hardhat (приватный ключ будет показан при запуске `yarn chain`)
 
-- Edit your smart contracts
-- Edit your deployment scripts
-- Customize your frontend
-- Edit the app config
-- Writing and running tests
-- [Setting up external services and API keys](https://docs.scaffoldeth.io/deploying/deploy-smart-contracts#configuration-of-third-party-services-for-production-grade-apps)
+## Функциональность смарт-контракта
 
-## Documentation
+### Основные функции
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn all the technical details and guides of Scaffold-ETH 2.
+**`vote(uint256 optionIndex)`**
+- Позволяет пользователю проголосовать за выбранный вариант
+- Проверяет, что пользователь ещё не голосовал
+- Эмитирует событие `Voted`
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+**`getOptionsCount()`**
+- Возвращает количество вариантов голосования
 
-## Contributing to Scaffold-ETH 2
+**`getOption(uint256 index)`**
+- Возвращает название и количество голосов для конкретного варианта
 
-We welcome contributions to Scaffold-ETH 2!
+**`getAllOptions()`**
+- Возвращает все варианты с результатами голосования
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+**`checkIfVoted(address voter)`**
+- Проверяет, голосовал ли указанный адрес
+
+### События
+
+**`Voted(address indexed voter, uint256 indexed optionIndex, string optionName)`**
+- Эмитируется при успешном голосовании
+
+**`VotingCreated(uint256 optionsCount)`**
+- Эмитируется при создании нового голосования
+
+## Тестирование
+
+### Запуск тестов
+
+```bash
+yarn hardhat:test
+```
+
+### Покрытие тестами
+
+Тесты включают проверку:
+- ✅ Корректного развёртывания контракта
+- ✅ Успешного голосования
+- ✅ Запрета повторного голосования
+- ✅ Корректного подсчёта голосов
+- ✅ Получения результатов голосования
+- ✅ Обработки ошибочных ситуаций
+
+## Пользовательский интерфейс
+
+### Функции интерфейса
+
+1. **Подключение кошелька** — интеграция с MetaMask через RainbowKit
+2. **Отображение вариантов** — список всех доступных вариантов голосования
+3. **Голосование** — возможность проголосовать за выбранный вариант
+4. **Результаты в реальном времени** — автоматическое обновление результатов
+5. **Визуализация** — прогресс-бары для каждого варианта
+6. **Статистика** — общее количество голосов и вариантов
+
+### Состояния интерфейса
+
+- **Не подключен кошелёк** — предложение подключить MetaMask
+- **Уже проголосовал** — отображение результатов без возможности повторного голосования
+- **Доступно голосование** — активные кнопки для голосования
+
+## Дополнительные команды
+
+```bash
+# Компиляция контрактов
+yarn hardhat:compile
+
+# Запуск Hardhat node
+yarn hardhat:node
+
+# Проверка контракта
+yarn hardhat:verify --network <network-name>
+
+# Форматирование кода
+yarn format
+
+# Линтинг
+yarn lint
+```
+
+## Безопасность
+
+### Реализованные меры безопасности
+
+- Проверка на повторное голосование через `mapping(address => bool)`
+- Валидация индекса варианта голосования
+- Валидация входных данных при создании контракта
+- События для отслеживания всех действий
+- Иммутабельность результатов после записи в блокчейн
+
+## Критерии приёмки
+
+Проект соответствует всем требованиям ТЗ:
+
+- ✅ Смарт-контракт успешно компилируется и развёртывается
+- ✅ Пользователь может проголосовать через веб-интерфейс
+- ✅ Повторное голосование невозможно
+- ✅ Результаты голосования отображаются корректно
+- ✅ Проект запускается согласно инструкции
+- ✅ Все данные хранятся в блокчейне
+- ✅ Присутствуют модульные тесты
+- ✅ Документация полная и актуальная
+
+## Дополнительная информация
+
+### Документация
+
+- [Scaffold-ETH 2 Documentation](https://docs.scaffoldeth.io)
+- [Hardhat Documentation](https://hardhat.org/docs)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Wagmi Documentation](https://wagmi.sh)
+
+### Развёртывание в тестовых сетях
+
+Для развёртывания в тестовых сетях (Sepolia, Goerli и т.д.):
+
+1. Настройте `.env` файл с вашими ключами
+2. Обновите конфигурацию сети в `hardhat.config.ts`
+3. Запустите `yarn deploy --network <network-name>`
+

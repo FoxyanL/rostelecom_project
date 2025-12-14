@@ -4137,6 +4137,7 @@ __metadata:
     prettier: ^3.5.3
     prettier-plugin-solidity: ^1.4.1
     qrcode: ^1.5.4
+    solc: 0.8.20
     solidity-coverage: ^0.8.13
     ts-node: ^10.9.1
     typechain: ^8.3.2
@@ -17513,6 +17514,7 @@ __metadata:
   dependencies:
     husky: ^9.1.6
     lint-staged: ^15.2.10
+    solc: 0.8.20
   languageName: unknown
   linkType: soft
 
@@ -18011,6 +18013,23 @@ __metadata:
     ip-address: ^9.0.5
     smart-buffer: ^4.2.0
   checksum: cd1edc924475d5dfde534adf66038df7e62c7343e6b8c0113e52dc9bb6a0a10e25b2f136197f379d695f18e8f0f2b7f6e42977bf720ddbee912a851201c396ad
+  languageName: node
+  linkType: hard
+
+"solc@npm:0.8.20":
+  version: 0.8.20
+  resolution: "solc@npm:0.8.20"
+  dependencies:
+    command-exists: ^1.2.8
+    commander: ^8.1.0
+    follow-redirects: ^1.12.1
+    js-sha3: 0.8.0
+    memorystream: ^0.3.1
+    semver: ^5.5.0
+    tmp: 0.0.33
+  bin:
+    solcjs: solc.js
+  checksum: 8ff85f5e4aeda2018a97d1383284ed982ccc93fe528e1e78e3a8897e8da69848c7d44a8b1562e2ca9082b72c7a547827543eda6bcb12210e6a191e9e64baa5c8
   languageName: node
   linkType: hard
 
